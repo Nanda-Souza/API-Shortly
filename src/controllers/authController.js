@@ -2,21 +2,24 @@ import { db } from "../config/database.js";
 import bcrypt from "bcrypt"
 import { v4 as uuidV4 } from "uuid";
 
-/*export const login = (async (req, res) => {
-  const { email, senha } = req.body;
+export const signin = (async (req, res) => {  
 
   try {
-    const usuarioOn = await db.collection("usuarios").findOne({ email })
+    const { email, password } = req.body;
+    
+    const checkUser = await db.query(`SELECT * FROM users WHERE EMAIL = $1`, [email]);    
 
-    if (!usuarioOn) return res.status(400).send("Usuário ou senha incorretos")
+    if (checkUser.rowCount  === 0) return res.status(401).send("Invalid User or Password!")
 
-    const verificaSenha = bcrypt.compareSync(senha, usuarioOn.senha)
+    const validatePass = bcrypt.compareSync(password, checkUser.rows[0].password)
 
-    if (!verificaSenha) return res.status(400).send("Usuário ou senha incorretos")
+    if (!validatePass) return res.status(401).send("Invalid User or Password!")
 
     const token = uuidV4()
 
-    await db.collection("sessoes").insertOne({ idUsuario: usuarioOn._id, token })
+    //await db.collection("sessoes").insertOne({ idUsuario: usuarioOn._id, token })
+    await db.query(
+      `INSERT INTO sessions (token, "userId") VALUES ($1, $2)`, [token, checkUser.rows[0].id]);
 
     return res.status(200).send({ token })
 
@@ -25,7 +28,7 @@ import { v4 as uuidV4 } from "uuid";
     console.log(error)
 
 }
-})*/
+})
 
 export async function signup(req, res) {
   
@@ -36,7 +39,7 @@ export async function signup(req, res) {
     const result = await db.query(`SELECT * FROM users WHERE EMAIL = $1`, [email]);
 
     
-    if(result.rows.length > 0)
+    if(result.rowCount > 0)
       return res.status(409).send("User already exists!")
 
       await db.query(
