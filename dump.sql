@@ -28,7 +28,8 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     name character varying(100) NOT NULL,
     email character varying(100) NOT NULL,
-    password character varying(200) NOT NULL
+    password character varying(200) NOT NULL,
+    createdat timestamp with time zone DEFAULT now() NOT NULL
 );
 
 
@@ -63,7 +64,7 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (1, 'Lavitz Slambert', 'l@l.com', '$2b$10$GYEZTl2qojr41SQ20vOGteCzDnG.wj5UZuyBuWfxUbsuBZNy8vnee');
+INSERT INTO public.users VALUES (1, 'Lavitz Slambert', 'l@l.com', '$2b$10$GYEZTl2qojr41SQ20vOGteCzDnG.wj5UZuyBuWfxUbsuBZNy8vnee', '2023-03-02 00:00:00-03');
 
 
 --
