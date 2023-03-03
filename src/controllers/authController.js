@@ -5,9 +5,10 @@ import { v4 as uuidV4 } from "uuid";
 export const signin = (async (req, res) => {  
 
   try {
+
     const { email, password } = req.body;
     
-    const checkUser = await db.query(`SELECT * FROM users WHERE EMAIL = $1`, [email]);    
+    const checkUser = await db.query(`SELECT * FROM users WHERE EMAIL = $1;`, [email]);    
 
     if (checkUser.rowCount  === 0) return res.status(401).send("Invalid User or Password!")
 
@@ -17,15 +18,13 @@ export const signin = (async (req, res) => {
 
     const token = uuidV4()
 
-    //await db.collection("sessoes").insertOne({ idUsuario: usuarioOn._id, token })
-    await db.query(
-      `INSERT INTO sessions (token, "userId") VALUES ($1, $2)`, [token, checkUser.rows[0].id]);
+      await db.query(
+      `INSERT INTO sessions (token, "userId") VALUES ($1, $2);`, [token, checkUser.rows[0].id]);
 
     return res.status(200).send({ token })
 
 } catch (error) {
-    res.sendStatus(500)
-    console.log(error)
+    res.status(500).send(error.message)    
 
 }
 })
@@ -36,14 +35,14 @@ export async function signup(req, res) {
     const { name, email, password } = req.body
     const hashPass = bcrypt.hashSync(password, 10)
 
-    const result = await db.query(`SELECT * FROM users WHERE EMAIL = $1`, [email]);
+    const result = await db.query(`SELECT * FROM users WHERE EMAIL = $1;`, [email]);
 
     
     if(result.rowCount > 0)
       return res.status(409).send("User already exists!")
 
       await db.query(
-        `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`, [name, email, hashPass]);
+        `INSERT INTO users (name, email, password) VALUES ($1, $2, $3);`, [name, email, hashPass]);
     
     res.status(201).send("User Registered!")
 
