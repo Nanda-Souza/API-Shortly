@@ -37,7 +37,7 @@ export const shorten = (async (req, res) => {
         if(!parseInt(id))
             return res.status(404).send("Url not found!");
         
-        const result = await db.query( `SELECT id, url, "shortUrl" FROM urls WHERE id = ${id};`);        
+        const result = await db.query( `SELECT id, url, "shortUrl" FROM urls WHERE id = $1;` [id]);        
       
         if (result.rowCount === 0){
           return res.status(404).send("Url not found!");
@@ -50,3 +50,26 @@ export const shorten = (async (req, res) => {
         }
       
       })
+
+
+      export const openShortUrl = (async (req, res) => {
+
+        try {
+            const { shortUrl } = req.params;        
+            
+            const result = await db.query( `SELECT * FROM urls WHERE "shortUrl" = $1;`, [shortUrl]);        
+          
+            if (result.rowCount === 0){
+              return res.status(404).send("ShortUrl not found!");
+                
+            }
+
+            await db.query( `UPDATE urls SET "visitCount" = "visitCount" + 1 WHERE "shortUrl" = $1;`, [shortUrl]);            
+            
+            res.status(200).redirect(result.rows[0].url);
+    
+            } catch (err) {
+              res.status(500).send(err.message);
+            }
+          
+          })

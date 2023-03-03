@@ -61,7 +61,8 @@ CREATE TABLE public.urls (
     url character varying(100) NOT NULL,
     "shortUrl" character varying(100) NOT NULL,
     "userId" integer NOT NULL,
-    "createdAt" timestamp with time zone DEFAULT now()
+    "createdAt" timestamp with time zone DEFAULT now(),
+    "visitCount" integer DEFAULT 0
 );
 
 
@@ -152,8 +153,8 @@ INSERT INTO public.sessions VALUES (3, '6bddf3c8-036a-4c43-a7ea-a435cd48cbc8', 1
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.urls VALUES (6, 'https://ohgod.com', 'wq1rkqvjGLzYV8y5ECkc5', 1, '2023-03-02 20:53:02.8569-03');
-INSERT INTO public.urls VALUES (7, 'https://ninja.com', 'xlvLaY1O_L9YYG6Jb8jza', 1, '2023-03-02 22:10:56.150624-03');
+INSERT INTO public.urls VALUES (6, 'https://ohgod.com', 'wq1rkqvjGLzYV8y5ECkc5', 1, '2023-03-02 20:53:02.8569-03', 0);
+INSERT INTO public.urls VALUES (7, 'https://ninja.com', 'xlvLaY1O_L9YYG6Jb8jza', 1, '2023-03-02 22:10:56.150624-03', 1);
 
 
 --
