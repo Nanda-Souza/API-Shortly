@@ -155,7 +155,8 @@ INSERT INTO public.sessions VALUES (4, 'c75daa63-147d-4576-b044-1295786f8f8f', 2
 --
 
 INSERT INTO public.urls VALUES (7, 'https://ninja.com', 'xlvLaY1O_L9YYG6Jb8jza', 1, '2023-03-02 22:10:56.150624-03', 1);
-INSERT INTO public.urls VALUES (8, 'https://g1.com', 'Id-810Li8kGFGK215gL2J', 2, '2023-03-03 00:17:43.801575-03', 0);
+INSERT INTO public.urls VALUES (8, 'https://g1.com', 'Id-810Li8kGFGK215gL2J', 2, '2023-03-03 00:17:43.801575-03', 2);
+INSERT INTO public.urls VALUES (10, 'https://google.com', 'jRBXuogSQcB293oeEwhM1', 2, '2023-03-03 01:15:54.8151-03', 3);
 
 
 --
@@ -177,7 +178,7 @@ SELECT pg_catalog.setval('public.sessions_id_seq', 4, true);
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 9, true);
+SELECT pg_catalog.setval('public.urls_id_seq', 10, true);
 
 
 --
