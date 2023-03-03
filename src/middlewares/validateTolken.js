@@ -14,7 +14,7 @@ export async function autenticationToken(req, res, next) {
     const checkSession = await db.query(`SELECT "userId" FROM sessions WHERE token = $1;`, [token]);    
 
     if (checkSession.rowCount  === 0) 
-        return res.status(422).send("Unauthorized Access!")    
+        return res.status(401).send("Unauthorized Access!")    
 
     next()
 
