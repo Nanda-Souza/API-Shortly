@@ -28,3 +28,25 @@ export const shorten = (async (req, res) => {
   
   }
   })
+
+  export const getUrlsById = (async (req, res) => {
+
+    try {
+        const { id } = req.params;        
+        
+        if(!parseInt(id))
+            return res.status(404).send("Url not found!");
+        
+        const result = await db.query( `SELECT id, url, "shortUrl" FROM urls WHERE id = ${id};`);        
+      
+        if (result.rowCount === 0){
+          return res.status(404).send("Url not found!");
+            
+        }
+        res.status(200).send(result.rows[0]);
+
+        } catch (err) {
+          res.status(500).send(err.message);
+        }
+      
+      })
