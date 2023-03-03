@@ -25,3 +25,25 @@ export const getUserInfo = (async (req, res) => {
         }
     
     })
+
+export const getRanking = (async (req, res) => {
+
+    try {       
+    
+        const result = await db.query( 
+            `SELECT us.id, us.name,
+            SUM((CASE WHEN ur.id IS NOT NULL THEN 1 ELSE 0 END)) AS "linksCount",
+            SUM(COALESCE(ur."visitCount",0)) as "visitCount"
+            FROM users us 
+            LEFT JOIN urls ur ON ur."userId" = us.id
+            GROUP BY us.id
+            ORDER BY "visitCount" DESC LIMIT 10;`);
+
+        res.status(200).send(result.rows);
+
+        } catch (err) {
+        res.status(500).send(err.message);
+        }
+    
+    })
+    

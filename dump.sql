@@ -165,6 +165,15 @@ INSERT INTO public.urls VALUES (10, 'https://google.com', 'jRBXuogSQcB293oeEwhM1
 
 INSERT INTO public.users VALUES (1, 'Lavitz Slambert', 'l@l.com', '$2b$10$GYEZTl2qojr41SQ20vOGteCzDnG.wj5UZuyBuWfxUbsuBZNy8vnee', '2023-03-02 00:00:00-03');
 INSERT INTO public.users VALUES (2, 'Machine-Kun', 'm@k.com', '$2b$10$G7S8kkiPli86hSR.y1PN/OjU4BMXi4beFMTZgxNvBtGx1FFu4AHsq', '2023-03-03 00:15:34.563675-03');
+INSERT INTO public.users VALUES (3, 'rasta', 'r@r.com', '$2b$10$CQAcq6xnxPeZEEu9nr4Uyua//P58jIVaz7VUNoeHtxy7yByIhONda', '2023-03-03 09:27:13.097975-03');
+INSERT INTO public.users VALUES (4, 'guin', 'big@g.com', '$2b$10$cPkkcKaIg0kk3rEbsTBV4eMGkEuacnwKODfn2P.SiqXftoeu2a3xm', '2023-03-03 09:27:35.691075-03');
+INSERT INTO public.users VALUES (5, 'turco', 't@g.com', '$2b$10$oFHNVcJdTSCYGJ.Hijd7Fe9zkpNxPZl5P8PWovAqm.TGAUOuNDnXq', '2023-03-03 09:27:44.43376-03');
+INSERT INTO public.users VALUES (6, 'pink', 'p@k.com', '$2b$10$sUKwdvateyPfaCB4XO05Ee/MP0KVG1u013btKRFc8NJR37fg6G/PK', '2023-03-03 09:27:54.57537-03');
+INSERT INTO public.users VALUES (7, 'neko', 'n@k.com', '$2b$10$vu00LXo2iFalhd.HQA64JOXmIp/3wlmpihgGtokrO8ZGP4tJdNLhq', '2023-03-03 09:28:01.924081-03');
+INSERT INTO public.users VALUES (8, 'henry', 'h@y.com', '$2b$10$sJwE80EIOYCwTHR13mI.sePfeP/IIx/3LNO.RYhT8kF5f2t2S/0Aq', '2023-03-03 09:28:11.534059-03');
+INSERT INTO public.users VALUES (9, 'tibuzio', 't@b.com', '$2b$10$GZaKdK32TULsa/Nd8bSxbemWeW7mQe6asI1V/mOGc.cUY1fPeN85.', '2023-03-03 09:28:22.068139-03');
+INSERT INTO public.users VALUES (10, 'planta', 'p@t.com', '$2b$10$j/.rli3TJQ6U8S8xd.fFjew4t6cWlgdZ.9.Ovol6vOtlKhlsgbvQ6', '2023-03-03 09:28:31.18618-03');
+INSERT INTO public.users VALUES (11, 'gordo', 'g@d.com', '$2b$10$kZJJjzKteb2/Ccm1l0XwUO8X5j.Qjcf1wAbkYbM7LSk6Siren8wby', '2023-03-03 09:28:39.424429-03');
 
 
 --
@@ -185,7 +194,7 @@ SELECT pg_catalog.setval('public.urls_id_seq', 10, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 11, true);
 
 
 --
