@@ -29,30 +29,30 @@ export const shorten = (async (req, res) => {
   }
   })
 
-  export const getUrlsById = (async (req, res) => {
+    export const getUrlsById = (async (req, res) => {
 
-    try {
-        const { id } = req.params;        
+        try {
+            const { id } = req.params;        
         
-        if(!parseInt(id))
+            if(!parseInt(id))
+                return res.status(404).send("Url not found!");
+        
+            const result = await db.query( `SELECT id, url, "shortUrl" FROM urls WHERE id = $1;`, [id]);
+                    
+            if (result.rowCount === 0){
             return res.status(404).send("Url not found!");
+                
+            }
+            res.status(200).send(result.rows[0]);
+
+            } catch (err) {
+            res.status(500).send(err.message);
+            }
         
-        const result = await db.query( `SELECT id, url, "shortUrl" FROM urls WHERE id = $1;`, [id]);
-                 
-        if (result.rowCount === 0){
-          return res.status(404).send("Url not found!");
-            
-        }
-        res.status(200).send(result.rows[0]);
-
-        } catch (err) {
-          res.status(500).send(err.message);
-        }
-      
-      })
+        })
 
 
-      export const openShortUrl = (async (req, res) => {
+    export const openShortUrl = (async (req, res) => {
 
         try {
             const { shortUrl } = req.params;        
@@ -73,3 +73,38 @@ export const shorten = (async (req, res) => {
             }
           
           })
+
+        export const deleteUrlsById = (async (req, res) => {
+
+        try {
+            const { authorization } = req.headers        
+
+            const { id } = req.params;        
+
+            const token = authorization?.replace("Bearer ", '')            
+            
+            if(!parseInt(id))
+                return res.status(404).send("ShortUrl not found!");
+            
+            const userId = await db.query(`SELECT "userId" FROM sessions WHERE token = $1;`, [token]);
+            
+            const result = await db.query( `SELECT id, "shortUrl", "userId" FROM urls WHERE id = $1;`, [id]);
+                        
+            if (result.rowCount === 0){
+                return res.status(404).send("ShortUrl not found!");
+                
+            }
+
+            if (result.rows[0].userId != userId.rows[0].userId){
+                return res.status(401).send("ShortUrl does not belong to user!");
+                
+            }
+
+            await db.query( `DELETE FROM urls WHERE id = $1;`, [id]);
+                return res.status(204).send("ShortUrl deleted!");
+    
+            } catch (err) {
+                res.status(500).send(err.message);
+            }
+            
+            })

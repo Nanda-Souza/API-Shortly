@@ -4,7 +4,8 @@ import { autenticationToken } from "../middlewares/validateTolken.js";
 import { urlSchema } from '../schemas/urlSchema.js'
 import { shorten,
          getUrlsById,
-         openShortUrl } from '../controllers/urlsController.js'
+         openShortUrl,
+         deleteUrlsById } from '../controllers/urlsController.js'
 
 
 
@@ -17,6 +18,8 @@ urlsRoute.post("/urls/shorten", autenticationToken, validateSchema(urlSchema), s
 urlsRoute.get("/urls/:id", getUrlsById)
 
 urlsRoute.get("/urls/open/:shortUrl", openShortUrl)
+
+urlsRoute.delete("/urls/:id", autenticationToken, deleteUrlsById)
 
 
 export default urlsRoute

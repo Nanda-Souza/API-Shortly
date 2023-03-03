@@ -147,14 +147,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 INSERT INTO public.sessions VALUES (1, '4820e453-2dec-4665-afd9-2c1fdc8d8c2a', 1, '2023-03-02 17:07:32.208052-03');
 INSERT INTO public.sessions VALUES (2, '32ec24a3-7d11-4eec-8f9f-1c0cf0d6badf', 1, '2023-03-02 17:49:36.166776-03');
 INSERT INTO public.sessions VALUES (3, '6bddf3c8-036a-4c43-a7ea-a435cd48cbc8', 1, '2023-03-02 18:11:12.447276-03');
+INSERT INTO public.sessions VALUES (4, 'c75daa63-147d-4576-b044-1295786f8f8f', 2, '2023-03-03 00:16:49.474308-03');
 
 
 --
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.urls VALUES (6, 'https://ohgod.com', 'wq1rkqvjGLzYV8y5ECkc5', 1, '2023-03-02 20:53:02.8569-03', 0);
 INSERT INTO public.urls VALUES (7, 'https://ninja.com', 'xlvLaY1O_L9YYG6Jb8jza', 1, '2023-03-02 22:10:56.150624-03', 1);
+INSERT INTO public.urls VALUES (8, 'https://g1.com', 'Id-810Li8kGFGK215gL2J', 2, '2023-03-03 00:17:43.801575-03', 0);
 
 
 --
@@ -162,27 +163,28 @@ INSERT INTO public.urls VALUES (7, 'https://ninja.com', 'xlvLaY1O_L9YYG6Jb8jza',
 --
 
 INSERT INTO public.users VALUES (1, 'Lavitz Slambert', 'l@l.com', '$2b$10$GYEZTl2qojr41SQ20vOGteCzDnG.wj5UZuyBuWfxUbsuBZNy8vnee', '2023-03-02 00:00:00-03');
+INSERT INTO public.users VALUES (2, 'Machine-Kun', 'm@k.com', '$2b$10$G7S8kkiPli86hSR.y1PN/OjU4BMXi4beFMTZgxNvBtGx1FFu4AHsq', '2023-03-03 00:15:34.563675-03');
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 3, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 4, true);
 
 
 --
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 7, true);
+SELECT pg_catalog.setval('public.urls_id_seq', 9, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
